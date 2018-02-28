@@ -1,8 +1,54 @@
 <html ng-app="trumanApp">
-    <head>
-
-    </head>
-    <body>
-        <h1>hello world</h1>
-    </body>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>欢迎使用粉笔直播课客户端</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/login.css" />
+</head>
+<body ng-controller="RootCtrl" class="login-body">
+    <div class="truman-login-wrapper" ng-controller="LoginCtrl" id="login">
+        <div class="header-wrapper" ng-controller="HeaderCtrl">
+            <div class="logo">
+            </div>
+            <span class="window-close  button pull-right" ng-click="close()"></span>
+            <span class="window-minimize button pull-right" ng-click="minimize()"></span>
+        </div>
+        <div class="login-wrapper">
+            <div class="login-form">
+                <form>
+                    <div class="user-name form-line">
+                        <label class="form-left" for="loginFormEmailInput">账号</label>
+                        <input class="form-center" id="loginFormEmailInput" name="email" type="text" ng-modle="userName" 
+                        placeholder="请输入邮箱地址/手机号" required>
+                        <span class="form-right" ng-click="signup()">注册账号</span>
+                    </div>
+                    <div class="password form-line">
+                        <label class="form-left" for="loginFormPasswordInput">密码</label>
+                        <input class="form-center" id="loginFormPasswordInput" name="password" type="password" ng-model="password" 
+                        placeholder="请输入密码" ng-keypress="onKeydown($event)" ng-change="skipStoragePwd()" required>
+                        <span class="form-right" ng-click="retrieve()">忘记密码</span>
+                    </div>
+                    <div class="err-message form-line">
+                        <div class="form-left">&nbsp;</div>
+                        <div class="form-center" ng-if="submitFailed">
+                            <span class="err-message-icon"></span><span class="err-message-content" ng-bind="errMessage"></span>
+                        </div>
+                    </div>
+                    <div class="optional-operation form-line">
+                        <div class="form-left">&nbsp;</div>
+                        <div class="form-center">
+                            <label for="autoLoginCheckbox" class="auto-login"><input type="checkbox" id="autoLoginCheckbox" 
+                                ng-click="switchAutoLogin($event);" ng-checked="autoLogin === 'true'"/>自动登录</label>
+                            <label for="savePasswordCheckbox" class="save-password"><input id="savePasswordCheckbox" type="checkbox" 
+                                ng-click="switchSavePassword($event);" ng-checked="savePassword === 'true'" />记住密码</label>
+                        </div>
+                    </div>
+                    <div class="form-line" ng-click="login($event)">
+                        <div class="form-left">&nbsp;</div>
+                        <div class="login-button button form-center">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
